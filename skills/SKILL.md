@@ -61,6 +61,13 @@ Reference these guidelines when:
 
 ### 2. Timing Functions (HIGH)
 
+> **Easing Decision Guide:**
+> - Element entering or exiting the viewport? → `ease-out`
+> - Element already on screen, moving or morphing? → `ease-in-out`
+> - Hover color/opacity change? → `ease`
+> - Constant motion (marquee, loaders)? → `linear`
+> - Default fallback? → `ease-out`
+
 - `spring-for-gestures` - Gesture-driven motion (drag, flick) must use springs
 - `spring-for-interruptible` - Interruptible motion must use springs
 - `spring-preserves-velocity` - Springs preserve input energy on release
@@ -77,6 +84,10 @@ Reference these guidelines when:
 - `none-high-frequency` - No animation for high-frequency interactions
 - `none-keyboard-navigation` - Keyboard navigation instant, no animation
 - `none-context-menu-entrance` - Context menus: no entrance, exit only
+- `easing-use-cubic-bezier` — Use custom cubic-bezier values; recommended: ease-out `cubic-bezier(0.22, 1, 0.36, 1)`, ease-in-out `cubic-bezier(0.65, 0, 0.35, 1)`
+- `easing-avoid-ease-in` — Avoid ease-in entirely; it reads as unresponsive in UI
+- `easing-css-ease-for-hover` — Use CSS `ease` for hover color/opacity transitions and subtle animations like toasts
+- `easing-linear-hold-to-confirm` — Linear is valid for hold-to-confirm/delete where visualizing time passage is intentional
 
 ### 3. Exit Animations (HIGH)
 
@@ -231,6 +242,12 @@ Reference these guidelines when:
 - `visual-consistent-spacing-scale` - Use a consistent spacing scale, not arbitrary values
 - `visual-border-alpha-colors` - Semi-transparent borders adapt to any background
 - `visual-button-shadow-anatomy` - Six-layer shadow anatomy for polished buttons
+
+### 13. Animation Decisions (HIGH)
+
+- `animate-enter-exit-spatial` — Animate enter/exit for elements that establish spatial relationships (modals, drawers, dropdowns)
+- `animate-user-feedback` — Animate state changes triggered by user actions; skip when speed matters more than smoothness
+- `animate-delight-sparingly` — Reserve delight animations for rare interactions; never animate things users do 100+ times daily
 
 ## How to Use
 
